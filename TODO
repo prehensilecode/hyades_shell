@@ -1,0 +1,20 @@
+# Things to hack.
+#
+# $Id: TODO,v 1.1.1.1 1999/09/03 14:25:14 dwchin Exp $
+#
+
+1.  Hmm.  Printing out transpose(tr(1,0:6)) after hyades_shell ends
+    and comparing it with the .otf file shows me that the numbers
+    only agree to 3 significant figures, or sometimes 2 sig fig.
+    Figure out why!
+
+2.  Since we don't use either zone numbers or region numbers, no sense
+    storing them in "array" in read_hyades.pro.  Fix that.
+
+        -- Done
+
+3.  rcm is one of the outputs in the OTF file.  Do we need
+    to compute it?
+
+        -- Yes.  Done.
+

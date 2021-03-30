@@ -1,0 +1,20 @@
+# Miscellaneous notes on IDL, and the hyades_shell suite.
+#
+# $Id: NOTES,v 1.1.1.1 1999/09/03 14:25:14 dwchin Exp $
+#
+
+1.  Array indexing:
+
+       a(i,j) -- i = column index
+		 j = row index
+
+2.  READF to assign an array reads consecutively,
+    and assigns consecutively, filling in rows first.
+    ("Row major", is the jargon, I think.)
+
+3.  Variables we are interested in (see hyades_shell.pro):
+
+        time, rz, u, rho, pres, te, tion, tr, 
+	zbar, lasi, rcm, ucm
+
+

@@ -1,0 +1,146 @@
+#
+# $Id: DOCUMENTATION,v 1.2 1999/10/05 01:44:05 dwchin Exp $
+#
+                                    ================
+                                    HYADES SHELL v.2
+                                    ================
+        
+        
+        A.  Introduction
+            ------------
+        
+            The IDL .pro file, hyades_shell, is a main-level procedure for
+            analyzing HYADES (1D) data.  Almost all functionality is accessible
+            through the text-based menus.  The only thing that does not work
+            properly through the menus is the animation.  To run the animation,
+            the animation procedure has to be called manually.  After
+            HYADES_SHELL quits, it leaves all data from the .OTF file in the
+            common block HYAD_DATA.
+        
+        
+        B.  Running HYADES_SHELL
+            --------------------
+        
+            HYADES_SHELL reads data from the .OTF file that hyades produces.
+        
+            Working directory
+            -----------------
+            To run HYADES_SHELL, the current directory or working directory has
+            to contain the datafile.  In UNIX, this can be accomplished by
+            changing to the appropriate directory before starting IDL.  It can
+            also be accomplished after IDL has been started by using the CD
+            procedure to change directories (see IDL Help).  On the Macintosh,
+            set the "Working Directory" by using "Apple(Command)-;", or the
+            appropriate menu option.
+        
+        
+            Running HYADES_SHELL
+            --------------------
+            1. In IDL, type
+        
+                     .run HYADES_SHELL
+        
+            2. HYADES_SHELL will prompt for a "runname".  The runname
+               is the name of the .OTF file without the .OTF suffix,
+               e.g. "denramp14.otf" has "denramp14" as its runname.
+        
+            3. HYADES_SHELL will then prompt for the "Number of
+               Dumps".  This is the number of time steps for which
+               data was written out.  Enter an integer for a number of
+               dumps, or enter "0" (zero) for HYADES_SHELL to get all
+               the dumps.
+        
+        
+        C.  Main functions
+            --------------
+        
+            The plots that can be produced by HYADES_SHELL are:
+        
+            1. Te, Tion, Rho, U, Pres vs. Zones (y-axis) & Time
+               (x-axis).  The values of the variables plotted are
+               represented by colors.
+        
+            2. Te, Tion, Rho, U, Pres vs. Rcm (y-axis) & Time
+               (x-axis).  The values of the variables plotted are
+               represented by colors.
+        
+            3. Rho, Ucm, Pres, Te, Tion, Tr vs. Rcm, at 5 different
+               times.  These plots are all made in one window.  Each
+               graph in the window consists of 6 plots (curves): 5
+               plots evenly spaced in time, and the zero (or one,
+               depending) time index plot.  The plots at different
+               times are done with different colors.  There is a
+               text-based menu for changing plot parameters.
+        
+            4. Animations of Rho, Ucm, Pres, Te, Tion, Tr vs. Rcm.  To
+               do animations, one has to Quit from HYADES_SHELL.
+               HYADANIM accesses the common block HYAD_DATA to get the
+               data.
+        
+        
+        D.   HYADANIM
+             --------
+        
+             HYADANIM is called this way:
+        
+                 hyadanim, var,  $
+                       xrange=xrange, yrange=yrange,  $
+                       /plotrho, $
+                       rhorange=rhorange,
+                       /help, $
+                       /bigwin
+        
+             All keywords are optional.
+        
+             Arguments:
+        
+                      var      A string containing the name of the variable 
+                               to be plotted.  Legal names are:
+                                      rho
+                                      pres
+                                      ucm
+                                      te
+                                      tion
+                                      tr
+        
+             Keywords:
+        
+                      xrange   A 2-element vector containing the range of Rcm
+                               over which to plot. 
+                               E.g. xrange=[-.02, .08]
+        
+                      yrange   A 2-element vector containing the range of the
+                               variable over which to plot. 
+                               E.g. yrange=[1.e-4, 0.1] 
+        
+                      /plotrho If set, HYADANIM will plot the density
+                               Rho on the same graph in dashed lines.
+        
+                      rhorange A 2-element vector containing the range of 
+                               Rho to be plotted.
+        
+                      /help    Prints out short help on calling HYADANIM, and
+                               does nothing else.
+        
+                      /bigwin  Makes a large window for animating in.  Useful
+                               for taking datapoints off each fram using the
+                               CURSOR procedure.
+        
+              
+              Example:
+        
+                      hyadanim, 'tion', xrange=[-.02, .08], /plotrho, /bigwin
+        
+        
+                      This will put up an animation window, with the Rcm-axis 
+                      (x-axis) range of [-.02, .08], overlay the tion plot with
+                      a plot of rho, in a big window.
+        
+        
+              Caution:
+        
+                      The animation takes up a lot of memory.  Currently, it
+                      runs without problems only on Remnant (or any Unix
+                      machine), and the G3 PowerMac with 256MB of RAM.
+        
+        
